@@ -27,13 +27,13 @@ const ImmutableGrid = ({
   gridColumnSpec,
   minColumnWidth,
   maxColumnWidth,
-  gridWidth
+  maxGridWidth
 }) => {
   const isSpecValid = validateGrid(
     gridColumnSpec,
     minColumnWidth,
     maxColumnWidth,
-    gridWidth
+    maxGridWidth
   );
 
   return (
