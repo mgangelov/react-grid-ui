@@ -23,6 +23,7 @@ const GridColumn = styled(Column)`
 `
 
 const ImmutableGrid = ({
+  id,
   gridColumnSpec,
   minColumnWidth,
   maxColumnWidth,
@@ -39,7 +40,7 @@ const ImmutableGrid = ({
     <>
     {
       isSpecValid
-        ? <GridBody columnSpec={gridColumnSpec} className='grid width=12'>
+        ? <GridBody id={id} columnSpec={gridColumnSpec} className='grid width=12'>
             {gridColumnSpec.map(
               ({width, text, id}, idx) => (<GridColumn id={id} key={idx} width={width} text={text}/>)
             )}
@@ -54,6 +55,7 @@ const ImmutableGrid = ({
 };
 
 ImmutableGrid.defaultProps = {
+  id: null,
   gridColumnSpec: [],
   minColumnWidth: 1,
   maxColumnWidth: 12,
@@ -61,6 +63,7 @@ ImmutableGrid.defaultProps = {
 };
 
 ImmutableGrid.propTypes = {
+  id: PropTypes.string,
   gridColumnSpec: PropTypes.arrayOf(PropTypes.object),
   minColumnWidth: PropTypes.number,
   maxColumnWidth: PropTypes.number,

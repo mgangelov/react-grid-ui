@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { generateRandomNumber, generateRandomWord } from '../utils/randomDataUtils';
 import {
@@ -10,6 +10,8 @@ import {
 import ImmutableGrid from './ImmutableGrid';
 
 const MutableGrid = ({
+  id,
+  enableEditControls,
   gridColumnSpec,
   minColumnWidth,
   maxColumnWidth,
@@ -39,23 +41,34 @@ const MutableGrid = ({
   return (
     <div>
       <ImmutableGrid
+        id={id}
         gridColumnSpec={columns}
         maxGridWidth={maxGridWidth}
       />
-      <Button
-        onClick={() => onColumnAdd({
-          width: generateRandomNumber(minColumnWidth, maxColumnWidth),
-          text: generateRandomWord()
-        })}
-      >Add new random column</Button>
-      <Button
-        onClick={() => onColumnRemove(columns[columns.length - 1].id)}
-      >Remove last column</Button>
+      {enableEditControls &&
+        <div className='grid-edit-controls'>
+          <Button
+            onClick={() => onColumnAdd({
+              width: generateRandomNumber(minColumnWidth, maxColumnWidth),
+              text: generateRandomWord()
+            })}
+          >
+            Add new random column
+          </Button>
+          <Button
+            onClick={() => onColumnRemove(columns[columns.length - 1].id)}
+          >
+            Remove last column
+          </Button>
+        </div>
+      }
     </div>
   );
 };
 
 MutableGrid.defaultProps = {
+  id: null,
+  enableEditControls: true,
   gridColumnSpec: [],
   minColumnWidth: 1,
   maxColumnWidth: 12,
@@ -63,6 +76,8 @@ MutableGrid.defaultProps = {
 }
 
 MutableGrid.propTypes = {
+  id: PropTypes.string,
+  enableEditControls: PropTypes.bool,
   gridColumnSpec: PropTypes.arrayOf(PropTypes.object),
   minColumnWidth: PropTypes.number,
   maxColumnWidth: PropTypes.number,
