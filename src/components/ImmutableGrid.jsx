@@ -41,10 +41,13 @@ const ImmutableGrid = ({
       isSpecValid
         ? <GridBody columnSpec={gridColumnSpec} className='grid width=12'>
             {gridColumnSpec.map(
-              ({width, text}, idx) => (<GridColumn key={idx} width={width} text={text}/>)
+              ({width, text, id}, idx) => (<GridColumn id={id} key={idx} width={width} text={text}/>)
             )}
           </GridBody>
-        : <div>Grid specification passed is invalid</div>
+        : <div>
+            Grid specification passed is invalid:
+            {getColumnWidths(gridColumnSpec).join(' ')}
+          </div>
     }
     </>
   );
