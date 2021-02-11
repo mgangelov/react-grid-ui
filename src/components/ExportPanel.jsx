@@ -35,8 +35,7 @@ const ExportPanel = ({
         variant='light'
         href={htmlContent}
         target={'_blank'}
-        download='test.html'
-        // onClick={() => exportHtml(targetId)}
+        download='grid.html'
       >
         Export HTML
       </Button>
@@ -44,8 +43,7 @@ const ExportPanel = ({
         variant='dark'
         href={jsonSerialisedHtmlContent}
         target={'_blank'}
-        download='test.json'
-        // onClick={() => exportHtml(targetId)}
+        download='grid.json'
       >
         Export JSON
       </Button>
